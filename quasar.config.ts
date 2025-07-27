@@ -81,17 +81,18 @@ export default defineConfig((ctx) => {
           },
         ],
 
-        [
-          'vite-plugin-checker',
-          {
-            vueTsc: true,
-            eslint: {
-              lintCommand: 'eslint -c ./eslint.config.js "./src*/**/*.{ts,js,mjs,cjs,vue}"',
-              useFlatConfig: true,
-            },
-          },
-          { server: false },
-        ],
+        // disable vite-plugin-checker to solve compatibility issues
+        // [
+        //   'vite-plugin-checker',
+        //   {
+        //     vueTsc: true,
+        //     eslint: {
+        //       lintCommand: 'eslint -c ./eslint.config.js "./src*/**/*.{ts,js,mjs,cjs,vue}"',
+        //       useFlatConfig: true,
+        //     },
+        //   },
+        //   { server: false },
+        // ],
       ],
     },
 
