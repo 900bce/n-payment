@@ -12,14 +12,249 @@
 // to match your app's branding.
 // Tip: Use the "Theme Builder" on Quasar's documentation website.
 
-$primary: #1976d2;
-$secondary: #26a69a;
-$accent: #9c27b0;
+// $primary: #FF7E29;
+// $secondary: #33C1B0;
+// $accent: #9c27b0; // This can be kept or changed if an accent color is identified in the design.
 
-$dark: #1d1d1d;
-$dark-page: #121212;
+// $dark: #1d1d1d;
+// $dark-page: #121212;
 
-$positive: #21ba45;
-$negative: #c10015;
-$info: #31ccec;
-$warning: #f2c037;
+// $positive: #21ba45;
+// $negative: #C71A1A; // Using the red-500 from the design system for consistency
+// $info: #31ccec;
+// $warning: #f2c037;
+
+// // A custom variable for the main text color from the design
+// $text-dark: #333333;
+
+// ====================
+// Custom Design System
+// ====================
+
+// Font Sizes
+:root {
+  --font-size-xss: 10px;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 32px;
+  --font-size-4xl: 36px;
+  --font-size-5xl: 48px;
+  --font-size-6xl: 60px;
+  --font-size-7xl: 72px;
+  --font-size-8xl: 96px;
+  --font-size-9xl: 128px;
+
+  // Gray Colors
+  --color-gray-0: #F4F5F6;
+  --color-gray-50: #EBEEEF;
+  --color-gray-100: #E3E6E8;
+  --color-gray-200: #D5DADC;
+  --color-gray-300: #C6CDD0;
+  --color-gray-400: #ABB5BA;
+  --color-gray-500: #8F9CA3;
+  --color-gray-600: #73838C;
+  --color-gray-700: #5C6970;
+  --color-gray-800: #454F54;
+  --color-gray-900: #2E3538;
+
+  // Teal Colors
+  --color-teal-0: #EEF6F7;
+  --color-teal-50: #CBE5E6;
+  --color-teal-100: #A9D4D6;
+  --color-teal-200: #86C2C5;
+  --color-teal-300: #64B1B5;
+  --color-teal-400: #4A979B;
+  --color-teal-500: #3A7679;
+  --color-teal-600: #2E5E60;
+  --color-teal-700: #264D4F;
+  --color-teal-800: #1E3C3E;
+  --color-teal-900: #162B2D;
+
+  // Green Colors
+  --color-green-0: #EAFBF4;
+  --color-green-50: #CCF5E4;
+  --color-green-100: #A1EDCD;
+  --color-green-200: #76E5B6;
+  --color-green-300: #4DDDA0;
+  --color-green-400: #1CD084;
+  --color-green-500: #15B471;
+  --color-green-600: #11925C;
+  --color-green-700: #0D7248;
+  --color-green-800: #095234;
+  --color-green-900: #063723;
+
+  // Yellow Colors
+  --color-yellow-0: #FFFEF5;
+  --color-yellow-50: #FFFCE5;
+  --color-yellow-100: #FFF9CC;
+  --color-yellow-200: #FFF6B3;
+  --color-yellow-300: #FFF18A;
+  --color-yellow-400: #FFE624;
+  --color-yellow-500: #FADD00;
+  --color-yellow-600: #DEC60C;
+  --color-yellow-700: #B8A40A;
+  --color-yellow-800: #918108;
+  --color-yellow-900: #6A5F06;
+
+  // Amber Colors
+  --color-amber-0: #FDF7ED;
+  --color-amber-50: #FBEEDA;
+  --color-amber-100: #F9E5C7;
+  --color-amber-200: #F6D4A2;
+  --color-amber-300: #F1BF74;
+  --color-amber-400: #ECAA46;
+  --color-amber-500: #E89519;
+  --color-amber-600: #C27D14;
+  --color-amber-700: #9D6510;
+  --color-amber-800: #7D500D;
+  --color-amber-900: #583809;
+
+  // Orange Colors
+  --color-orange-0: #FFF2EB;
+  --color-orange-50: #FEE5D7;
+  --color-orange-100: #FED5BE;
+  --color-orange-200: #FDB48C;
+  --color-orange-300: #FC945A;
+  --color-orange-400: #FB7429;
+  --color-orange-500: #EB5704;
+  --color-orange-600: #C94A03;
+  --color-orange-700: #A13B02;
+  --color-orange-800: #792C02;
+  --color-orange-900: #501D01;
+
+  // Red Colors
+  --color-red-0: #FDF1F1;
+  --color-red-50: #FCE4E4;
+  --color-red-100: #F6B7B7;
+  --color-red-200: #F08A8A;
+  --color-red-300: #EA5D5D;
+  --color-red-400: #E43030;
+  --color-red-500: #C71A1A;
+  --color-red-600: #991414;
+  --color-red-700: #831111;
+  --color-red-800: #6C0E0E;
+  --color-red-900: #480909;
+
+  --color-black: #000;
+  --color-white: #fff;
+}
+
+// SCSS Variables for easier use in .scss files
+// Font Sizes
+$font-size-xss: var(--font-size-xss);
+$font-size-xs: var(--font-size-xs);
+$font-size-sm: var(--font-size-sm);
+$font-size-md: var(--font-size-md);
+$font-size-lg: var(--font-size-lg);
+$font-size-xl: var(--font-size-xl);
+$font-size-2xl: var(--font-size-2xl);
+$font-size-3xl: var(--font-size-3xl);
+$font-size-4xl: var(--font-size-4xl);
+$font-size-5xl: var(--font-size-5xl);
+$font-size-6xl: var(--font-size-6xl);
+$font-size-7xl: var(--font-size-7xl);
+$font-size-8xl: var(--font-size-8xl);
+$font-size-9xl: var(--font-size-9xl);
+
+// Color Maps for programmatic use
+$gray-colors: (
+  0: var(--color-gray-0),
+  50: var(--color-gray-50),
+  100: var(--color-gray-100),
+  200: var(--color-gray-200),
+  300: var(--color-gray-300),
+  400: var(--color-gray-400),
+  500: var(--color-gray-500),
+  600: var(--color-gray-600),
+  700: var(--color-gray-700),
+  800: var(--color-gray-800),
+  900: var(--color-gray-900)
+);
+
+$teal-colors: (
+  0: var(--color-teal-0),
+  50: var(--color-teal-50),
+  100: var(--color-teal-100),
+  200: var(--color-teal-200),
+  300: var(--color-teal-300),
+  400: var(--color-teal-400),
+  500: var(--color-teal-500),
+  600: var(--color-teal-600),
+  700: var(--color-teal-700),
+  800: var(--color-teal-800),
+  900: var(--color-teal-900)
+);
+
+$green-colors: (
+  0: var(--color-green-0),
+  50: var(--color-green-50),
+  100: var(--color-green-100),
+  200: var(--color-green-200),
+  300: var(--color-green-300),
+  400: var(--color-green-400),
+  500: var(--color-green-500),
+  600: var(--color-green-600),
+  700: var(--color-green-700),
+  800: var(--color-green-800),
+  900: var(--color-green-900)
+);
+
+$yellow-colors: (
+  0: var(--color-yellow-0),
+  50: var(--color-yellow-50),
+  100: var(--color-yellow-100),
+  200: var(--color-yellow-200),
+  300: var(--color-yellow-300),
+  400: var(--color-yellow-400),
+  500: var(--color-yellow-500),
+  600: var(--color-yellow-600),
+  700: var(--color-yellow-700),
+  800: var(--color-yellow-800),
+  900: var(--color-yellow-900)
+);
+
+$amber-colors: (
+  0: var(--color-amber-0),
+  50: var(--color-amber-50),
+  100: var(--color-amber-100),
+  200: var(--color-amber-200),
+  300: var(--color-amber-300),
+  400: var(--color-amber-400),
+  500: var(--color-amber-500),
+  600: var(--color-amber-600),
+  700: var(--color-amber-700),
+  800: var(--color-amber-800),
+  900: var(--color-amber-900)
+);
+
+$orange-colors: (
+  0: var(--color-orange-0),
+  50: var(--color-orange-50),
+  100: var(--color-orange-100),
+  200: var(--color-orange-200),
+  300: var(--color-orange-300),
+  400: var(--color-orange-400),
+  500: var(--color-orange-500),
+  600: var(--color-orange-600),
+  700: var(--color-orange-700),
+  800: var(--color-orange-800),
+  900: var(--color-orange-900)
+);
+
+$red-colors: (
+  0: var(--color-red-0),
+  50: var(--color-red-50),
+  100: var(--color-red-100),
+  200: var(--color-red-200),
+  300: var(--color-red-300),
+  400: var(--color-red-400),
+  500: var(--color-red-500),
+  600: var(--color-red-600),
+  700: var(--color-red-700),
+  800: var(--color-red-800),
+  900: var(--color-red-900)
+);
