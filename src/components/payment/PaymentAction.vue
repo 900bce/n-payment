@@ -1,9 +1,5 @@
 <template>
-  <header class="header-container">
-    <div class="header-main">
-      <div class="header-title">Collect Payment</div>
-      <button class="reset-payment" @click="resetPayment">Reset Payment</button>
-    </div>
+  <div class="payment-action-container">
     <div class="location-select-wrapper">
       <font-awesome-icon icon="fa-solid fa-location-dot" class="place-icon" />
       <select
@@ -17,55 +13,42 @@
       </select>
       <font-awesome-icon icon="fa-solid fa-chevron-down" class="chevron-down-icon" />
     </div>
-  </header>
+    <div class="payment-action-button-container">
+      <button class="log-payment-button" :disabled="props.isAmountBelowMinimum">
+        <font-awesome-icon icon="fa-solid fa-money-bill-wave" class="log-payment-icon" />Log Payment
+      </button>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import type { Location } from 'src/types/payment';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import type { Location } from 'src/types/payment';
 
 const props = defineProps<{
   locations: Location[];
   selectedLocation: Location | null;
+  isAmountBelowMinimum: boolean;
 }>();
 
-const emit = defineEmits(['update:selectedLocation', 'reset:payment']);
+const emit = defineEmits(['update:selectedLocation']);
 
 const updateSelectedLocation = (event: Event) => {
   const select = event.target as HTMLSelectElement;
   emit('update:selectedLocation', select.value);
 };
-
-const resetPayment = () => {
-  emit('reset:payment');
-};
 </script>
 
-<style scoped>
-.header-container {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 8px 0;
-  margin-bottom: 8px;
-}
-
-.header-main {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.header-title {
-  color: var(--color-black);
-  font-size: var(--font-size-2xl);
-  font-weight: 700;
+<style lang="scss" scoped>
+.payment-action-container {
+  padding: 16px;
 }
 
 .location-select-wrapper {
   position: relative;
   display: flex;
   align-items: center;
+  width: fit-content;
 }
 
 .place-icon {
@@ -87,9 +70,7 @@ const resetPayment = () => {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 100%;
-  background-color: var(--color-gray-100);
-  border-radius: 8px;
+  /* width: 100%; */
   padding: 12px 40px;
   border: none;
   font-weight: 500;
@@ -97,11 +78,17 @@ const resetPayment = () => {
   cursor: pointer;
 }
 
-.reset-payment {
-  color: var(--color-red-400);
-  font-size: var(--font-size-sm);
+.payment-action-button-container {
+  margin-top: 24px;
+}
+
+.log-payment-button {
+  background-color: var(--color-orange-400);
   border: none;
-  background: transparent;
-  cursor: pointer;
+  width: 100%;
+  color: var(--color-white);
+  font-size: var(--font-size-sm);
+  height: 36px;
+  border-radius: 6px;
 }
 </style>
