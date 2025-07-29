@@ -7,7 +7,7 @@
     <div class="location-select-wrapper">
       <font-awesome-icon icon="fa-solid fa-location-dot" class="place-icon" />
       <select
-        :value="props.selectedLocation?.id"
+        :value="props.selectedLocationId"
         class="location-select"
         @change="updateSelectedLocation"
       >
@@ -26,7 +26,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 const props = defineProps<{
   locations: Location[];
-  selectedLocation: Location | null;
+  selectedLocationId: number | null;
 }>();
 
 const emit = defineEmits(['update:selectedLocation', 'reset:payment']);

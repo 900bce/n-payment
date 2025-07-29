@@ -1,6 +1,6 @@
-import type { PaymentLocationReader } from 'src/types/payment';
+import type { Reader } from 'src/types/payment';
 
-export const mockReaders: PaymentLocationReader[] = [
+export const mockReaders: Reader[] = [
   {
     id: 23,
     label: 'Device Reader 01',

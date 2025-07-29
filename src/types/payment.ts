@@ -37,7 +37,7 @@ export interface Location {
   deletedAt: string | null;
 }
 
-export interface PaymentLocationReader {
+export interface Reader {
   id: number;
   label: string;
   readerId: string;

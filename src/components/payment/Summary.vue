@@ -11,7 +11,10 @@
       :cash-amount="props.total"
       :card-amount="props.total"
       :is-amount-below-minimum="props.isAmountBelowMinimum"
+      :current-payment-type="props.currentPaymentType"
+      :patient-card-processing-fee="props.patientCardProcessingFee"
       @payment-selected="onPaymentSelected"
+      @edit-card-processing-fee="emit('edit-card-processing-fee')"
     />
   </div>
 </template>
@@ -27,11 +30,17 @@ const props = defineProps<{
   taxAmount: string;
   total: string;
   locations: Location[];
-  selectedLocation: Location | null;
+  selectedLocationId: number | null;
   isAmountBelowMinimum: boolean;
+  currentPaymentType: 'cash' | 'card';
+  patientCardProcessingFee: string;
 }>();
 
-const emit = defineEmits(['update:selectedLocation']);
+const emit = defineEmits([
+  'update:selectedLocation',
+  'update:currentPaymentType',
+  'edit-card-processing-fee',
+]);
 
 const displayAmount = computed(() => {
   return props.amount.toFixed(2);
@@ -41,9 +50,8 @@ const displayTaxRate = computed(() => {
   return (parseFloat(props.taxRate) * 100).toFixed(2);
 });
 
-// 支付相關的處理函數
 const onPaymentSelected = (paymentType: 'cash' | 'card') => {
-  console.log('Payment type selected:', paymentType);
+  emit('update:currentPaymentType', paymentType);
 };
 </script>
 
