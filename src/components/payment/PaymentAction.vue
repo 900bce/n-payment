@@ -39,7 +39,10 @@
       </button>
 
       <div v-if="props.currentPaymentType === 'card'" class="card-payment-wrapper">
-        <button class="card-payment-button card-payment-button-reader">
+        <button
+          class="card-payment-button card-payment-button-reader"
+          @click="emit('initiate-payment')"
+        >
           <font-awesome-icon icon="fa-solid fa-tablet-screen-button" class="card-payment-icon" />
           Initiate Payment on Reader
         </button>
@@ -65,7 +68,7 @@ const props = defineProps<{
   currentReaderId: number | null;
 }>();
 
-const emit = defineEmits(['update:selectedLocation', 'update:currentReaderId']);
+const emit = defineEmits(['update:selectedLocation', 'update:currentReaderId', 'initiate-payment']);
 
 const updateSelectedLocation = (event: Event) => {
   const select = event.target as HTMLSelectElement;

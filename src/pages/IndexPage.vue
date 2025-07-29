@@ -36,6 +36,7 @@
         :readers="readers"
         :current-reader-id="currentReaderId"
         @update:selected-location="updateSelectedLocation"
+        @initiate-payment="showPaymentReviewModal = true"
       />
 
       <EditProcessingFeeModal
@@ -48,6 +49,13 @@
         @confirm="onProcessingFeeConfirm"
         @cancel="onProcessingFeeCancel"
       />
+
+      <PaymentReviewModal
+        :model-value="showPaymentReviewModal"
+        @update:model-value="showPaymentReviewModal = $event"
+        @confirm="onPaymentReviewConfirm"
+        @cancel="onPaymentReviewCancel"
+      />
     </div>
   </q-page>
 </template>
@@ -59,6 +67,7 @@ import AmountInput from 'src/components/payment/AmountInput.vue';
 import Summary from 'src/components/payment/Summary.vue';
 import PaymentAction from 'src/components/payment/PaymentAction.vue';
 import EditProcessingFeeModal from 'src/components/payment/EditProcessingFeeModal.vue';
+import PaymentReviewModal from 'src/components/payment/PaymentReviewModal.vue';
 import type { Location, Reader } from 'src/types/payment';
 import { mockLocations } from 'src/mocks/locations';
 import { mockReaders } from 'src/mocks/readers';
@@ -76,6 +85,7 @@ const currentReaderId = ref<number | null>(
 const patientSharePercentage = ref(Number(organization.totalProcessingFeePercentage) / 2);
 const patientFeeFixed = ref(organization.totalProcessingFeeFixed / 2);
 const showProcessingFeeModal = ref(false);
+const showPaymentReviewModal = ref(false);
 
 const taxRate = computed(() =>
   selectedLocationId.value
@@ -124,6 +134,15 @@ const onProcessingFeeConfirm = (data: {
 
 const onProcessingFeeCancel = () => {
   showProcessingFeeModal.value = false;
+};
+
+const onPaymentReviewConfirm = () => {
+  // TODO: Handle payment processing
+  console.log('Processing payment...');
+};
+
+const onPaymentReviewCancel = () => {
+  showPaymentReviewModal.value = false;
 };
 </script>
 

@@ -7,6 +7,7 @@ import {
   faCreditCard,
   faMoneyBillWave,
   faTabletScreenButton,
+  faEye,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -18,6 +19,7 @@ library.add(
   faCreditCard,
   faMoneyBillWave,
   faTabletScreenButton,
+  faEye,
 );
 
 export default boot(({ app }) => {
