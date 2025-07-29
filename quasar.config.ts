@@ -54,7 +54,7 @@ export default defineConfig((ctx) => {
       // 為 GitHub Pages 設定 publicPath
       // 如果部署到 username.github.io，使用 '/'
       // 如果部署到 username.github.io/repository-name，使用 '/repository-name/'
-      publicPath: process.env.NODE_ENV === 'production' ? '/nitra-payment/' : '/',
+      publicPath: process.env.NODE_ENV === 'production' ? '/n-payment/' : '/',
       // analyze: true,
       // env: {},
       // rawDefine: {}
