@@ -37,6 +37,7 @@
         :current-reader-id="currentReaderId"
         @update:selected-location="updateSelectedLocation"
         @initiate-payment="showPaymentReviewModal = true"
+        @input-card-manually="showCreditCardModal = true"
       />
 
       <EditProcessingFeeModal
@@ -56,6 +57,14 @@
         @confirm="onPaymentReviewConfirm"
         @cancel="onPaymentReviewCancel"
       />
+
+      <CreditCardModal
+        :model-value="showCreditCardModal"
+        :total="total"
+        @update:model-value="showCreditCardModal = $event"
+        @confirm="onCreditCardConfirm"
+        @cancel="onCreditCardCancel"
+      />
     </div>
   </q-page>
 </template>
@@ -68,6 +77,7 @@ import Summary from 'src/components/payment/Summary.vue';
 import PaymentAction from 'src/components/payment/PaymentAction.vue';
 import EditProcessingFeeModal from 'src/components/payment/EditProcessingFeeModal.vue';
 import PaymentReviewModal from 'src/components/payment/PaymentReviewModal.vue';
+import CreditCardModal from 'src/components/payment/CreditCardModal.vue';
 import type { Location, Reader } from 'src/types/payment';
 import { mockLocations } from 'src/mocks/locations';
 import { mockReaders } from 'src/mocks/readers';
@@ -86,6 +96,7 @@ const patientSharePercentage = ref(Number(organization.totalProcessingFeePercent
 const patientFeeFixed = ref(organization.totalProcessingFeeFixed / 2);
 const showProcessingFeeModal = ref(false);
 const showPaymentReviewModal = ref(false);
+const showCreditCardModal = ref(false);
 
 const taxRate = computed(() =>
   selectedLocationId.value
@@ -97,7 +108,13 @@ const taxRate = computed(() =>
 const tax = computed(() =>
   selectedLocationId.value ? ((amount.value ?? 0) * parseFloat(taxRate.value)).toFixed(2) : '0',
 );
-const total = computed(() => ((amount.value ?? 0) + parseFloat(tax.value)).toFixed(2));
+const total = computed(() => {
+  const paymentType = currentPaymentType.value;
+  const totalAmount = (amount.value ?? 0) + parseFloat(tax.value);
+  return (
+    paymentType === 'card' ? totalAmount + Number(patientCardProcessingFee.value) : totalAmount
+  ).toFixed(2);
+});
 
 const isAmountBelowMinimum = computed(() => {
   return parseFloat(total.value) < 0.5 && parseFloat(total.value) > 0;
@@ -143,6 +160,15 @@ const onPaymentReviewConfirm = () => {
 
 const onPaymentReviewCancel = () => {
   showPaymentReviewModal.value = false;
+};
+
+const onCreditCardConfirm = (cardData: unknown) => {
+  // TODO: Handle credit card payment processing
+  console.log('Processing credit card payment...', cardData);
+};
+
+const onCreditCardCancel = () => {
+  showCreditCardModal.value = false;
 };
 </script>
 

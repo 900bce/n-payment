@@ -46,7 +46,10 @@
           <font-awesome-icon icon="fa-solid fa-tablet-screen-button" class="card-payment-icon" />
           Initiate Payment on Reader
         </button>
-        <button class="card-payment-button card-payment-button-manual">
+        <button
+          class="card-payment-button card-payment-button-manual"
+          @click="emit('input-card-manually')"
+        >
           <font-awesome-icon icon="fa-solid fa-credit-card" class="card-payment-icon" /> Input Card
           Number Manually
         </button>
@@ -68,7 +71,12 @@ const props = defineProps<{
   currentReaderId: number | null;
 }>();
 
-const emit = defineEmits(['update:selectedLocation', 'update:currentReaderId', 'initiate-payment']);
+const emit = defineEmits([
+  'update:selectedLocation',
+  'update:currentReaderId',
+  'initiate-payment',
+  'input-card-manually',
+]);
 
 const updateSelectedLocation = (event: Event) => {
   const select = event.target as HTMLSelectElement;
