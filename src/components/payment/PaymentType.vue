@@ -13,7 +13,9 @@
           <font-awesome-icon icon="fa-solid fa-credit-card" class="tab-icon" />
           <span class="tab-text">Pay by Card</span>
           <span class="tab-amount"
-            >${{ Number(props.cardAmount) + Number(props.patientCardProcessingFee) }}</span
+            >${{
+              (Number(props.cardAmount) + Number(props.patientCardProcessingFee)).toFixed(2)
+            }}</span
           >
         </div>
       </q-tab>
