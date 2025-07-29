@@ -3,42 +3,47 @@
     <Header
       :locations="locations"
       :selected-location-id="selectedLocationId"
+      :amount="amount"
       @update:selected-location="updateSelectedLocation"
       @reset:payment="resetPayment"
     />
     <div class="page-container">
-      <AmountInput
-        v-model="amount"
-        :description="description"
-        @update:description="updateDescription"
-      />
-      <div class="divider" />
-      <Summary
-        :amount="amount"
-        :tax-rate="taxRate"
-        :tax-amount="tax"
-        :total="total"
-        :locations="locations"
-        :selected-location-id="selectedLocationId"
-        :is-amount-below-minimum="isAmountBelowMinimum"
-        :current-payment-type="currentPaymentType"
-        :patient-card-processing-fee="patientCardProcessingFee"
-        @update:selected-location="updateSelectedLocation"
-        @update:current-payment-type="updateCurrentPaymentType"
-        @edit-card-processing-fee="showProcessingFeeModal = true"
-      />
-      <div class="divider" />
-      <PaymentAction
-        :locations="locations"
-        :selected-location-id="selectedLocationId"
-        :is-amount-below-minimum="isAmountBelowMinimum"
-        :current-payment-type="currentPaymentType"
-        :readers="readers"
-        :current-reader-id="currentReaderId"
-        @update:selected-location="updateSelectedLocation"
-        @initiate-payment="showPaymentReviewModal = true"
-        @input-card-manually="showCreditCardModal = true"
-      />
+      <div class="page-container-left">
+        <AmountInput
+          v-model="amount"
+          :description="description"
+          @update:description="updateDescription"
+        />
+      </div>
+      <div class="page-container-right">
+        <div class="divider" />
+        <Summary
+          :amount="amount"
+          :tax-rate="taxRate"
+          :tax-amount="tax"
+          :total="total"
+          :locations="locations"
+          :selected-location-id="selectedLocationId"
+          :is-amount-below-minimum="isAmountBelowMinimum"
+          :current-payment-type="currentPaymentType"
+          :patient-card-processing-fee="patientCardProcessingFee"
+          @update:selected-location="updateSelectedLocation"
+          @update:current-payment-type="updateCurrentPaymentType"
+          @edit-card-processing-fee="showProcessingFeeModal = true"
+        />
+        <div class="divider" />
+        <PaymentAction
+          :locations="locations"
+          :selected-location-id="selectedLocationId"
+          :is-amount-below-minimum="isAmountBelowMinimum"
+          :current-payment-type="currentPaymentType"
+          :readers="readers"
+          :current-reader-id="currentReaderId"
+          @update:selected-location="updateSelectedLocation"
+          @initiate-payment="showPaymentReviewModal = true"
+          @input-card-manually="showCreditCardModal = true"
+        />
+      </div>
 
       <EditProcessingFeeModal
         v-model="showProcessingFeeModal"
@@ -181,5 +186,19 @@ const onCreditCardCancel = () => {
 .divider {
   border-top: 1px solid var(--color-gray-100);
   height: 0;
+}
+
+@media (min-width: 768px) {
+  .page-container {
+    display: flex;
+  }
+
+  .page-container-left {
+    width: 100%;
+  }
+
+  .page-container-right {
+    border-left: 1px solid var(--color-gray-100);
+  }
 }
 </style>

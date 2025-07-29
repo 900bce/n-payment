@@ -175,4 +175,14 @@ const updateDescription = (event: Event) => {
   font-size: var(--font-size-sm);
   color: var(--color-gray-600);
 }
+
+@media (min-width: 768px) {
+  .amount-input-container {
+    padding: 100px 0;
+  }
+
+  .description-input {
+    width: 400px;
+  }
+}
 </style>

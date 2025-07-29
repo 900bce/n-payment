@@ -118,7 +118,8 @@ defineExpose({
 }
 
 .payment-tab {
-  padding: 4px 0;
+  padding: 4px 24px;
+  width: 100%;
 }
 
 .tab-content {
@@ -137,6 +138,16 @@ defineExpose({
   font-size: var(--font-size-xxs);
   font-weight: 500;
   text-transform: none;
+}
+
+@media (min-width: 768px) {
+  .tab-icon {
+    font-size: 12px;
+  }
+
+  .tab-text {
+    font-size: var(--font-size-xs);
+  }
 }
 
 .payment-panels {
@@ -173,6 +184,7 @@ defineExpose({
     color: var(--color-teal-400);
     text-decoration: underline;
     margin-left: 8px;
+    cursor: pointer;
   }
 }
 

@@ -164,6 +164,7 @@ const updateSelectedReader = (event: Event) => {
   font-size: var(--font-size-sm);
   height: 36px;
   border-radius: 6px;
+  cursor: pointer;
 }
 
 .card-payment-wrapper {

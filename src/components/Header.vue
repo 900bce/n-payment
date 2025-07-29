@@ -2,7 +2,9 @@
   <header class="header-container">
     <div class="header-main">
       <div class="header-title">Collect Payment</div>
-      <button class="reset-payment" @click="resetPayment">Reset Payment</button>
+      <button v-if="props.amount > 0" class="reset-payment" @click="resetPayment">
+        Reset Payment
+      </button>
     </div>
     <div class="location-select-wrapper">
       <font-awesome-icon icon="fa-solid fa-location-dot" class="place-icon" />
@@ -27,6 +29,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 const props = defineProps<{
   locations: Location[];
   selectedLocationId: number | null;
+  amount: number;
 }>();
 
 const emit = defineEmits(['update:selectedLocation', 'reset:payment']);
@@ -43,6 +46,7 @@ const resetPayment = () => {
 
 <style scoped>
 .header-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -103,5 +107,21 @@ const resetPayment = () => {
   border: none;
   background: transparent;
   cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .header-container {
+    flex-direction: row;
+  }
+
+  .reset-payment {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+  }
+
+  .location-select {
+    padding: 6px 40px;
+  }
 }
 </style>
