@@ -75,7 +75,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import Header from 'src/components/Header.vue';
 import AmountInput from 'src/components/payment/AmountInput.vue';
 import Summary from 'src/components/payment/Summary.vue';
@@ -102,6 +102,10 @@ const patientFeeFixed = ref(organization.totalProcessingFeeFixed / 2);
 const showProcessingFeeModal = ref(false);
 const showPaymentReviewModal = ref(false);
 const showCreditCardModal = ref(false);
+
+watch(selectedLocationId, (newVal) => {
+  currentReaderId.value = readers.value.find((reader) => reader.locationId === newVal)?.id || null;
+});
 
 const taxRate = computed(() =>
   selectedLocationId.value
