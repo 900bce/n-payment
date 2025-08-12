@@ -2,21 +2,23 @@
   <div class="payment-type-container">
     <q-tabs v-model="activeTab" dense class="payment-tabs" @update:model-value="onTabChange">
       <q-tab name="cash" class="payment-tab">
-        <div class="tab-content">
-          <font-awesome-icon icon="fa-solid fa-sack-dollar" class="tab-icon" />
-          <span class="tab-text">Pay by Cash</span>
-          <span class="tab-amount">${{ props.cashAmount }}</span>
+        <div class="tab-content flex flex-wrap" :style="{ width: '100px' }">
+          <div>
+            <font-awesome-icon icon="fa-solid fa-sack-dollar" class="tab-icon" />
+            <span class="tab-text">Pay by Cash</span>
+          </div>
+          <div class="tab-amount">${{ props.cashAmount }}</div>
         </div>
       </q-tab>
       <q-tab name="card" class="payment-tab">
-        <div class="tab-content">
-          <font-awesome-icon icon="fa-solid fa-credit-card" class="tab-icon" />
-          <span class="tab-text">Pay by Card</span>
-          <span class="tab-amount"
-            >${{
-              (Number(props.cardAmount) + Number(props.patientCardProcessingFee)).toFixed(2)
-            }}</span
-          >
+        <div class="tab-content flex flex-wrap" :style="{ width: '100px' }">
+          <div>
+            <font-awesome-icon icon="fa-solid fa-credit-card" class="tab-icon" />
+            <span class="tab-text">Pay by Card</span>
+          </div>
+          <div class="tab-amount">
+            ${{ (Number(props.cardAmount) + Number(props.patientCardProcessingFee)).toFixed(2) }}
+          </div>
         </div>
       </q-tab>
     </q-tabs>

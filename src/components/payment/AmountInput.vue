@@ -29,6 +29,8 @@
 <script setup lang="ts">
 import { computed, ref, nextTick, watch } from 'vue';
 
+const MAX_AMOUNT = 999999;
+
 const props = defineProps<{
   modelValue: number | null;
   description: string;
@@ -70,6 +72,11 @@ const value = computed({
 
     if (cleanValue === '') {
       emit('update:modelValue', 0);
+      return;
+    }
+
+    if (parseFloat(cleanValue) > MAX_AMOUNT) {
+      emit('update:modelValue', MAX_AMOUNT);
       return;
     }
 

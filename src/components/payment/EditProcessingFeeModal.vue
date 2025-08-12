@@ -220,6 +220,11 @@ const handlePatientFeeFixedChange = (value: string | number | null) => {
     return;
   }
 
+  if (Number(value) < 0) {
+    patientFeeFixed.value = 0;
+    return;
+  }
+
   if (Number(value) > totalFeeFixed) {
     patientFeeFixed.value = totalFeeFixed;
     return;
@@ -234,6 +239,7 @@ const onMerchantShareChange = (value: number) => {
 
 const setPatientFeeToZero = () => {
   merchantSharePercentage.value = totalFeePercentage;
+  handlePatientFeeFixedChange(0);
 };
 
 const onCancel = () => {
